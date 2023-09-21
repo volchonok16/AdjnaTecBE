@@ -1,7 +1,8 @@
 import { FeedbackFacade } from './feedback.facade';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 
 export const feedbackFacadeFactory = (
   commandBus: CommandBus,
   queryBus: QueryBus,
-) => new FeedbackFacade(commandBus, queryBus);
+  eventBus: EventBus,
+) => new FeedbackFacade(commandBus, queryBus, eventBus);

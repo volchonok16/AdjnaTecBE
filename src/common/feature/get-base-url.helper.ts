@@ -10,6 +10,6 @@ export const getBaseUrl = (configService: ConfigService): string => {
   }
 
   const port = configService.get(envConstant.port);
-  return 'https://f955-176-59-42-22.ngrok.io';
+  return 'https://4fb2-176-59-55-105.ngrok.io';
   //return `http://localhost:${port}`;
 };

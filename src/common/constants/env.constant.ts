@@ -3,6 +3,8 @@ export const envConstant = {
   appBaseUrl: 'APP_BASE_URL',
   port: 'PORT',
   telegramBotToken: 'TELEGRAM_BOT_TOKEN',
+  mailService: 'MAIL_SERVICE',
   mailbox: 'MAILBOX',
   emailPassword: 'EMAIL_PASSWORD',
+  contactEmail: 'CONTACT_EMAIL',
 };
