@@ -1,9 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { endpoints } from './common/constants';
 
-@Controller()
+@Controller(endpoints.default)
 export class AppController {
-  @Get()
-  getHello(): string {
-    return 'this.appService.getHello();';
+  @Post(endpoints.telegram)
+  async forTelegramHook(@Body() payload: any) {
+    console.log(payload);
+
+    //this.handleTelegramUpdateUseCase.execute(payload);
+
+    return { status: 'success' };
   }
 }
