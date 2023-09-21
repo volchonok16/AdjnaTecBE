@@ -1,7 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { AppModule } from './app.module';
+import { AppModule } from '../../app.module';
 import { useContainer } from 'class-validator';
-import { ExceptionsFilter } from './common/exeptions/exeption.filter';
+import { ExceptionsFilter } from '../exeptions/exeption.filter';
 
 export const appInit = (app: INestApplication) => {
   const options = {

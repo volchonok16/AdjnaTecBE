@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from '../../app.module';
-import { endpoints } from '../constants';
+import { swaggerEndpoint } from '../constants/endpoints';
+import { FeedbackModule } from '../../modules/feedback/feedback.module';
 
 export const swaggerInit = (app: INestApplication) => {
   const swaggerOptions = new DocumentBuilder()
@@ -12,7 +12,7 @@ export const swaggerInit = (app: INestApplication) => {
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerOptions, {
-    include: [AppModule],
+    include: [FeedbackModule],
   });
-  SwaggerModule.setup(endpoints.swagger, app, document);
+  SwaggerModule.setup(swaggerEndpoint, app, document);
 };

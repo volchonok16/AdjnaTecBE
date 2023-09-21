@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
-import { TelegramAdapter } from './adapters/telegram';
+import { ApiModule } from './modules/api.module';
 
 @Module({
   imports: [
@@ -10,8 +9,7 @@ import { TelegramAdapter } from './adapters/telegram';
       isGlobal: true,
       envFilePath: join(process.cwd(), '.env'),
     }),
+    ApiModule,
   ],
-  controllers: [AppController],
-  providers: [TelegramAdapter],
 })
 export class AppModule {}

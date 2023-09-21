@@ -1,12 +1,9 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { ConfigService } from '@nestjs/config';
-import {
-  endpoints,
-  envConstant,
-  telegramConstant,
-} from '../../common/constants';
+import { envConstant, telegramConstant } from '../../common/constants';
 import { getBaseUrl } from '../../common/feature';
+import { telegramEndpoints } from '../../common/constants/endpoints';
 
 @Injectable()
 export class TelegramAdapter implements OnModuleInit {
@@ -24,7 +21,7 @@ export class TelegramAdapter implements OnModuleInit {
 
   async onModuleInit() {
     await this.axiosInstance.post(telegramConstant.method.setWebhook, {
-      url: `${this.appUrl}/${endpoints.default}/${endpoints.telegram}`,
+      url: `${this.appUrl}/${telegramEndpoints.default}/${telegramEndpoints.telegram}`,
     });
   }
 }

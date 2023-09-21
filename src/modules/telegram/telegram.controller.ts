@@ -1,9 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { endpoints } from './common/constants';
+import { telegramEndpoints } from '../../common/constants/endpoints';
 
-@Controller(endpoints.default)
-export class AppController {
-  @Post(endpoints.telegram)
+@Controller(telegramEndpoints.default)
+export class TelegramController {
+  @Post(telegramEndpoints.telegram)
   async forTelegramHook(@Body() payload: any) {
     console.log(payload);
 
