@@ -2,3 +2,5 @@ dist
 node_modules
 .idea
 .env
+session_db.json
+src/common/providers/postgres/migrations
