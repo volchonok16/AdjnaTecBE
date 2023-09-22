@@ -7,11 +7,11 @@ export class FeedbackFormEntity {
   @PrimaryGeneratedColumn('uuid')
   readonly id: string;
 
-  @Column({
-    type: 'character varying',
-    nullable: true,
-  })
-  userId: string;
+  // @Column({
+  //   type: 'character varying',
+  //   nullable: true,
+  // })
+  // userId: string;
 
   @Column({
     type: 'character varying',
@@ -32,24 +32,24 @@ export class FeedbackFormEntity {
     length: fieldLength.comment,
     nullable: true,
   })
-  comment: string;
+  comment: string | null;
 
   @Column({
     type: 'character varying',
     nullable: true,
     default: new Date().toISOString(),
   })
-  createdAt: string;
+  createdAt: string | null;
 
   @Column({
     type: 'character varying',
     nullable: true,
   })
-  updatedAt: string;
+  updatedAt: string | null;
 
   static create(dto: CreateFeedbackDto): Partial<FeedbackFormEntity> {
     return {
-      userId: dto.id,
+      // userId: dto.id,
       name: dto.name,
       contacts: dto.name,
       comment: dto.comment,

@@ -4,15 +4,15 @@ import { fieldLength } from '../../../common/constants/data-base-field.constant'
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 
 export class CreateFeedbackDto {
-  @ApiProperty({
-    description:
-      'Идентификатор зарегистрированного пользователя, в фломате UUID',
-    example: null,
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  id: string;
+  // @ApiProperty({
+  //   description:
+  //     'Идентификатор зарегистрированного пользователя, в фломате UUID',
+  //   example: null,
+  //   required: false,
+  // })
+  // @IsOptional()
+  // @IsString()
+  // id: string;
 
   @ApiProperty({
     description: 'Имя, которое пользователь указал в форме обратной связи',

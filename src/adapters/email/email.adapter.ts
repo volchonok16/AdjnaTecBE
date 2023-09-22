@@ -1,17 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { envConstant } from '../../common/constants';
-
-const nodemailer = require('nodemailer');
+import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class EmailAdapters {
+  private readonly logger = new Logger(EmailAdapters.name);
   private readonly contactEmail: string;
-  private readonly transport;
+  private readonly transportConfig;
 
-  constructor(private configService: ConfigService) {
+  constructor(private readonly configService: ConfigService) {
     this.contactEmail = this.configService.get(envConstant.contactEmail);
-    this.transport = {
+    this.transportConfig = {
       host: this.configService.get(envConstant.mailboxHost),
       port: this.configService.get(envConstant.mailboxPort),
       secure: false,
@@ -23,15 +23,20 @@ export class EmailAdapters {
   }
 
   async sendEmail(subject: string, message: string): Promise<void> {
-    const transport = await nodemailer.createTransport(this.transport);
+    try {
+      const transport = await nodemailer.createTransport(this.transportConfig);
 
-    await transport.sendMail({
-      from: 'AdjnaTech <mail>',
-      to: this.contactEmail,
-      subject: subject,
-      html: message,
-    });
+      await transport.sendMail({
+        from: 'AdjnaTech <mail>',
+        to: this.contactEmail,
+        subject: subject,
+        html: message,
+      });
 
-    return;
+      this.logger.log('Email sent successfully');
+      return;
+    } catch (e) {
+      this.logger.error(`Email sending error: ${e}`);
+    }
   }
 }

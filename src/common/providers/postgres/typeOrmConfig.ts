@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import { envConstant } from '../../constants';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { FeedbackFormEntity } from './entities/feedback-form.entity';
 
 @Injectable()
 export class TypeOrmConfig implements TypeOrmOptionsFactory {
@@ -17,9 +16,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       username: this.configService.get(envConstant.dbUser),
       password: this.configService.get(envConstant.dbPassword),
       database: this.configService.get(envConstant.dbName),
-      synchronize: true,
-      migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-      entities: [FeedbackFormEntity],
+      synchronize: false,
     };
   }
 }

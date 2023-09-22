@@ -14,7 +14,7 @@ export class EmailManager {
       <p>Контактные данные: ${payload.contacts}</p>
       <p>Комментарий: ${payload.comment}</p>
     `;
-
-    return await this.emailAdapters.sendEmail(subject, message);
+    this.emailAdapters.sendEmail(subject, message);
+    return;
   }
 }

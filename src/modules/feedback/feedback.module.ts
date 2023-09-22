@@ -1,18 +1,17 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { FeedbackController } from './feedback.controller';
 import {
   FEEDBACK_COMMANDS_HANDLERS,
   FEEDBACK_EVENTS_HANDLERS,
   FeedbackFacade,
-  feedbackFacadeFactory,
 } from './application-services';
 import { CommandBus, CqrsModule, EventBus, QueryBus } from '@nestjs/cqrs';
 import { EmailAdapters, EmailManager } from '../../adapters/email';
 import { TelegramAdapter } from '../../adapters/telegram';
 import { FeedbackRepository } from './repositories/feedback.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TypeOrmConfig } from '../../common/providers/postgres/typeOrmConfig';
 import { FeedbackFormEntity } from '../../common/providers/postgres/entities/feedback-form.entity';
+import { feedbackFacadeFactory } from '../telegram/aplication-services';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([FeedbackFormEntity])],
@@ -31,4 +30,15 @@ import { FeedbackFormEntity } from '../../common/providers/postgres/entities/fee
     ...FEEDBACK_EVENTS_HANDLERS,
   ],
 })
-export class FeedbackModule {}
+export class FeedbackModule implements OnModuleInit {
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly eventBus: EventBus,
+  ) {}
+
+  onModuleInit(): any {
+    this.commandBus.register(FEEDBACK_COMMANDS_HANDLERS);
+    this.eventBus.register(FEEDBACK_EVENTS_HANDLERS);
+  }
+}
