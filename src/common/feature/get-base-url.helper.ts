@@ -9,7 +9,7 @@ export const getBaseUrl = (configService: ConfigService): string => {
     return configService.get(envConstant.appBaseUrl);
   }
 
-  const port = configService.get(envConstant.port);
-  return 'https://4fb2-176-59-55-105.ngrok.io';
+  const port = configService.get(envConstant.appPort);
+  return 'https://prenda.serveo.net';
   //return `http://localhost:${port}`;
 };

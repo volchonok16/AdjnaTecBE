@@ -6,14 +6,13 @@ import { CreateFeedbackDto } from '../../modules/feedback/dto/create-feedback.dt
 export class EmailManager {
   constructor(protected emailAdapters: EmailAdapters) {}
 
-  async sendFeedbackEmail(payload: CreateFeedbackDto): Promise<any> {
+  async sendNotificationEmail(payload: CreateFeedbackDto): Promise<any> {
     const subject = 'Создана новое обращение';
     const message = `
-      <h1>Пользователь ${payload.name} оставил обращение</h1>
-      <p>
-        Контактные данные: ${payload.contacts}
-        Комментарий: ${payload.comment}
-      </p>
+      <h1>Пользователь <b>${payload.name}</b> оставил обращение</h1>
+      <hr width="100%" color="red">
+      <p>Контактные данные: ${payload.contacts}</p>
+      <p>Комментарий: ${payload.comment}</p>
     `;
 
     return await this.emailAdapters.sendEmail(subject, message);

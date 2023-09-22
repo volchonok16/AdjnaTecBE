@@ -4,5 +4,6 @@ export const telegramConstant = {
   },
   method: {
     setWebhook: 'setWebhook',
+    sendMessage: 'sendMessage',
   },
 };

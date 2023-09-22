@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { CreateFeedbackDto } from '../dto';
 import { CreateFeedbackCommand } from './commands';
-import { SendFeedbackEmailEvent } from './events/send-feedback-email.event-handler';
+import { SendNotificationEvent } from './events/send-notification-event.handler';
 
 @Injectable()
 export class FeedbackFacade {
@@ -17,7 +17,9 @@ export class FeedbackFacade {
   };
 
   events = {
-    sendFeedbackMail: (dto: CreateFeedbackDto) => this.sendFeedbackMail(dto),
+    sendNotification: (dto: CreateFeedbackDto) => this.sendNotification(dto),
+    sendTelegramNotification: (dto: CreateFeedbackDto) =>
+      this.sendNotification(dto),
   };
 
   // Commands
@@ -27,8 +29,8 @@ export class FeedbackFacade {
   }
 
   // Events
-  private sendFeedbackMail(dto: CreateFeedbackDto): void {
-    const event = new SendFeedbackEmailEvent(dto);
+  private sendNotification(dto: CreateFeedbackDto): void {
+    const event = new SendNotificationEvent(dto);
     return this.eventBus.publish(event);
   }
 }

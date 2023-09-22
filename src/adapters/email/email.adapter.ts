@@ -12,7 +12,9 @@ export class EmailAdapters {
   constructor(private configService: ConfigService) {
     this.contactEmail = this.configService.get(envConstant.contactEmail);
     this.transport = {
-      service: this.configService.get(envConstant.mailService),
+      host: this.configService.get(envConstant.mailboxHost),
+      port: this.configService.get(envConstant.mailboxPort),
+      secure: false,
       auth: {
         user: this.configService.get(envConstant.mailbox),
         pass: this.configService.get(envConstant.emailPassword),

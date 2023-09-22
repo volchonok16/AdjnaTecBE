@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { dtoFieldLength } from '../../../common/constants/data-base-field.constant';
+import { fieldLength } from '../../../common/constants/data-base-field.constant';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 
 export class CreateFeedbackDto {
@@ -8,6 +8,7 @@ export class CreateFeedbackDto {
     description:
       'Идентификатор зарегистрированного пользователя, в фломате UUID',
     example: null,
+    required: false,
   })
   @IsOptional()
   @IsString()
@@ -19,7 +20,7 @@ export class CreateFeedbackDto {
   })
   @IsNotEmpty()
   @IsString()
-  @MaxLength(dtoFieldLength.name)
+  @MaxLength(fieldLength.name)
   name: string;
 
   @ApiProperty({
@@ -28,16 +29,17 @@ export class CreateFeedbackDto {
   })
   @IsNotEmpty()
   @IsString()
-  @MaxLength(dtoFieldLength.name)
+  @MaxLength(fieldLength.contacts)
   contacts: string;
 
   @ApiProperty({
     description:
       'Комментарий, оставленный пользователем в форме обратной связи ',
     example: randomStringGenerator(),
+    required: false,
   })
   @IsNotEmpty()
   @IsString()
-  @MaxLength(dtoFieldLength.name)
+  @MaxLength(fieldLength.comment)
   comment: string;
 }
