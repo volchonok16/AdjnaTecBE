@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "ngrok:dev": "yarn ngrok http 5000 --host-header=\"localhost:5000\"",
+    "ngrok:dev": "yarn ngrok http 5001 --host-header=\"localhost:5001\"",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js -d src/common/providers/postgres/typeOrmConfig.ts",
     "db:create": "yarn typeorm migration:generate src/common/providers/postgres/migration",
     "db:migration": "yarn typeorm migration:run",

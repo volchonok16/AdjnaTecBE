@@ -21,6 +21,9 @@ export class TelegramAdapter implements OnModuleInit {
     });
     this.appUrl = getBaseUrl(configService);
     this.botId = this.configService.get(envConstant.telegramBotId);
+    console.log(
+      `${this.appUrl}/${telegramEndpoints.default}/${telegramEndpoints.telegram}`,
+    );
   }
 
   async onModuleInit() {

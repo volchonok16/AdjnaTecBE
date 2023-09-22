@@ -10,6 +10,5 @@ export const getBaseUrl = (configService: ConfigService): string => {
   }
 
   const port = configService.get(envConstant.appPort);
-  return 'https://prenda.serveo.net';
-  //return `http://localhost:${port}`;
+  return `http://localhost:${port}`;
 };
