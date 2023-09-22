@@ -25,7 +25,7 @@ export class CreateFeedbackDto {
 
   @ApiProperty({
     description: 'Контактные данные пользователя, почта или телефон',
-    example: 'requests@2lmfa.ru',
+    example: 'somemail@gmail.com',
   })
   @IsNotEmpty()
   @IsString()

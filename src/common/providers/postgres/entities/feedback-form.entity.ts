@@ -34,6 +34,19 @@ export class FeedbackFormEntity {
   })
   comment: string;
 
+  @Column({
+    type: 'character varying',
+    nullable: true,
+    default: new Date().toISOString(),
+  })
+  createdAt: string;
+
+  @Column({
+    type: 'character varying',
+    nullable: true,
+  })
+  updatedAt: string;
+
   static create(dto: CreateFeedbackDto): Partial<FeedbackFormEntity> {
     return {
       userId: dto.id,
