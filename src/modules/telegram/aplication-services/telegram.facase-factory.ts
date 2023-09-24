@@ -1,5 +1,7 @@
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { TelegramFacade } from './telegram.facade';
 
-export const feedbackFacadeFactory = (commandBus: CommandBus) =>
-  new TelegramFacade(commandBus);
+export const telegramFacadeFactory = (
+  commandBus: CommandBus,
+  queryBus: QueryBus,
+) => new TelegramFacade(commandBus, queryBus);

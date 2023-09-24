@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { envConstant } from '../../constants';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { FeedbackFormEntity } from './entities/feedback-form.entity';
+import { TelegramUserEntity } from './entities/telegram-user.entity';
 
 @Injectable()
 export class TypeOrmConfig implements TypeOrmOptionsFactory {
@@ -16,6 +18,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       username: this.configService.get(envConstant.dbUser),
       password: this.configService.get(envConstant.dbPassword),
       database: this.configService.get(envConstant.dbName),
+      entities: [FeedbackFormEntity, TelegramUserEntity],
       synchronize: false,
     };
   }

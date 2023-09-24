@@ -11,6 +11,6 @@ export class FeedbackRepository {
   ) {}
 
   async createFeedback(dto: Partial<FeedbackFormEntity>) {
-    return this.feedbackRepository.create(dto);
+    return this.feedbackRepository.save(dto);
   }
 }

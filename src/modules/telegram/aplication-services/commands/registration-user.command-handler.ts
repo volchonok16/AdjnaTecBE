@@ -1,5 +1,5 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { TelegramUserDto } from '../../dto/telegram-user.dto';
+import { TelegramUserDto } from '../../dto';
 import { TelegramRepository } from '../../repositories/telegram.repository';
 import { TelegramQueryRepository } from '../../repositories/telegram.query-repository';
 

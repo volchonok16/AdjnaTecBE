@@ -7,12 +7,14 @@ import { Repository } from 'typeorm';
 export class TelegramQueryRepository {
   constructor(
     @InjectRepository(TelegramUserEntity)
-    private readonly feedbackRepository: Repository<TelegramUserEntity>,
+    private readonly telegramRepository: Repository<TelegramUserEntity>,
   ) {}
 
   async userExists(userId: number): Promise<boolean> {
-    const res = await this.feedbackRepository.exist({ where: { id: userId } });
-    console.log(res, 'q');
-    return res;
+    return await this.telegramRepository.exist({ where: { id: userId } });
+  }
+
+  async getRecipients(): Promise<TelegramUserEntity[]> {
+    return await this.telegramRepository.find();
   }
 }

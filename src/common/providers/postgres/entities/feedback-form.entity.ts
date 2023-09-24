@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { fieldLength } from '../../../constants/data-base-field.constant';
 import { CreateFeedbackDto } from '../../../../modules/feedback/dto';
+import { fieldLength } from '../../../constants';
 
 @Entity({ name: 'FeedbackForm' })
 export class FeedbackFormEntity {
@@ -36,6 +36,13 @@ export class FeedbackFormEntity {
 
   @Column({
     type: 'character varying',
+    length: fieldLength.note,
+    nullable: true,
+  })
+  note: string | null;
+
+  @Column({
+    type: 'character varying',
     nullable: true,
     default: new Date().toISOString(),
   })
@@ -51,7 +58,7 @@ export class FeedbackFormEntity {
     return {
       // userId: dto.id,
       name: dto.name,
-      contacts: dto.name,
+      contacts: dto.contacts,
       comment: dto.comment,
     };
   }

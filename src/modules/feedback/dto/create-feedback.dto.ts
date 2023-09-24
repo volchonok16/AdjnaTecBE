@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { fieldLength } from '../../../common/constants/data-base-field.constant';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
+import { fieldLength } from '../../../common/constants';
 
 export class CreateFeedbackDto {
   // @ApiProperty({

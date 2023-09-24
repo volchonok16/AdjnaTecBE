@@ -12,8 +12,6 @@ export class TelegramRepository {
   ) {}
 
   async registrationUser(dto: TelegramUserDto) {
-    const res = await this.feedbackRepository.create(dto);
-    console.log(res, 'r');
-    return res;
+    return await this.feedbackRepository.save(dto);
   }
 }

@@ -15,8 +15,8 @@ export class TelegramAdapter {
     this.botId = this.configService.get(envConstant.telegramBotId);
   }
 
-  async sendNotification(message: string) {
-    await this.bot.telegram.sendMessage(this.botId, message);
+  async sendNotification(message: string, recipientId: number) {
+    await this.bot.telegram.sendMessage(recipientId, message);
     return;
   }
 }

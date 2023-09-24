@@ -1,4 +1,6 @@
 export const buttonName = {
   get: `📄 Find`,
-  put: '✏️ Update',
+  put: '✏️ Add note',
+  next: '▶ Next',
+  back: '◀ Back',
 };

@@ -19,9 +19,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migration:generate": "node ./src/common/providers/postgres/tools/migratiomn-generate.js",
-    "migration:run": "typeorm-ts-node-esm migration:run -- -d ./src/common/providers/postgres/data-source.ts",
-    "migration:revert": "typeorm-ts-node-esm migration:revert -d ./src/common/providers/postgres/data-source.ts",
-    "db:drop": "yarn typeorm schema:drop"
+    "migration:run": "yarn typeorm-ts-node-esm migration:run -- -d ./src/common/providers/postgres/data-source.ts",
+    "migration:revert": "yarn typeorm-ts-node-esm migration:revert -d ./src/common/providers/postgres/data-source.ts",
+    "db:drop": "yarn yarn typeorm schema:drop"
   },
   "dependencies": {
     "@nestjs/common": "10.0.0",
