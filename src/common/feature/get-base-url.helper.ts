@@ -4,11 +4,12 @@ import { Environment } from '../enums';
 
 export const getBaseUrl = (configService: ConfigService): string => {
   const environment = configService.get(envConstant.nodeEnv);
+  const port = configService.get(envConstant.appPort);
 
   if (environment === Environment.Production) {
-    return configService.get(envConstant.appBaseUrl);
+    const baseUrl = configService.get(envConstant.appBaseUrl);
+    return `${baseUrl}:${port}`;
   }
 
-  const port = configService.get(envConstant.appPort);
   return `http://localhost:${port}`;
 };

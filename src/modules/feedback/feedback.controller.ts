@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { feedbackEndpoints } from '../../common/constants/endpoints';
 import { ApiCreateFeedbackForm } from '../../common/swagger/feedback-swagger-decorators';
 import { CreateFeedbackDto } from './dto';
@@ -7,6 +7,11 @@ import { FeedbackFacade } from './application-services';
 @Controller(feedbackEndpoints.default)
 export class FeedbackController {
   constructor(private readonly feedbackFacade: FeedbackFacade) {}
+
+  @Get()
+  async appWork() {
+    return `Приложение запущено.`;
+  }
 
   @Post()
   @ApiCreateFeedbackForm()
