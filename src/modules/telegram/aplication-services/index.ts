@@ -5,6 +5,7 @@ import { GetClientsQueryHandler } from './queries';
 
 export * from './telegram.facade';
 export * from './telegram.facase-factory';
+export * from './telegram-facade.provider';
 
 export const TELEGRAM_COMMANDS_HANDLERS: Type<ICommandHandler>[] = [
   RegistrationUserCommandHandler,

@@ -2,17 +2,18 @@ import { Module, OnModuleInit } from '@nestjs/common';
 import { FeedbackController } from './feedback.controller';
 import {
   FEEDBACK_COMMANDS_HANDLERS,
-  FeedbackFacade,
-  feedbackFacadeFactory,
+  feedbackFacadeProvider,
 } from './application-services';
-import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
+import { CommandBus, CqrsModule } from '@nestjs/cqrs';
 import { EmailAdapters, EmailManager } from '../../adapters/email';
 import { TelegramAdapter } from '../../adapters/telegram';
 import { FeedbackRepository } from './repositories/feedback.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FeedbackFormEntity } from '../../common/providers/postgres/entities/feedback-form.entity';
+import {
+  FeedbackFormEntity,
+  TelegramUserEntity,
+} from '../../common/providers/postgres/entities';
 import { TelegramQueryRepository } from '../telegram/repositories/telegram.query-repository';
-import { TelegramUserEntity } from '../../common/providers/postgres/entities/telegram-user.entity';
 
 @Module({
   imports: [
@@ -26,19 +27,12 @@ import { TelegramUserEntity } from '../../common/providers/postgres/entities/tel
     TelegramAdapter,
     FeedbackRepository,
     TelegramQueryRepository,
-    {
-      provide: FeedbackFacade,
-      inject: [CommandBus, QueryBus],
-      useFactory: feedbackFacadeFactory,
-    },
+    feedbackFacadeProvider,
     ...FEEDBACK_COMMANDS_HANDLERS,
   ],
 })
 export class FeedbackModule implements OnModuleInit {
-  constructor(
-    private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus,
-  ) {}
+  constructor(private readonly commandBus: CommandBus) {}
 
   onModuleInit(): any {
     this.commandBus.register(FEEDBACK_COMMANDS_HANDLERS);

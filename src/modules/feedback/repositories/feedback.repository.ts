@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { FeedbackFormEntity } from '../../../common/providers/postgres/entities/feedback-form.entity';
+import { FeedbackFormEntity } from '../../../common/providers/postgres/entities';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 

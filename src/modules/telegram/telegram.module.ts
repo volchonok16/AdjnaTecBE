@@ -8,16 +8,17 @@ import { envConstant } from '../../common/constants';
 import {
   TELEGRAM_COMMANDS_HANDLERS,
   TELEGRAM_QUERIES_HANDLERS,
-  TelegramFacade,
-  telegramFacadeFactory,
+  telegramFacadeProvider,
 } from './aplication-services';
-import { CommandBus, CqrsModule, EventBus, QueryBus } from '@nestjs/cqrs';
+import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TelegramUserEntity } from '../../common/providers/postgres/entities/telegram-user.entity';
 import { TelegramRepository } from './repositories/telegram.repository';
 import { TelegramQueryRepository } from './repositories/telegram.query-repository';
 import { FeedbackQueryRepository } from '../feedback/repositories/feedback.query-repository';
-import { FeedbackFormEntity } from '../../common/providers/postgres/entities/feedback-form.entity';
+import {
+  FeedbackFormEntity,
+  TelegramUserEntity,
+} from '../../common/providers/postgres/entities';
 
 const sessions = new LocalSession({ database: 'session_db.json' });
 
@@ -39,11 +40,7 @@ const sessions = new LocalSession({ database: 'session_db.json' });
     TelegramRepository,
     TelegramQueryRepository,
     FeedbackQueryRepository,
-    {
-      provide: TelegramFacade,
-      inject: [CommandBus, QueryBus],
-      useFactory: telegramFacadeFactory,
-    },
+    telegramFacadeProvider,
     ...TELEGRAM_COMMANDS_HANDLERS,
     ...TELEGRAM_QUERIES_HANDLERS,
   ],

@@ -1,14 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CommandBus } from '@nestjs/cqrs';
 import { CreateFeedbackDto } from '../dto';
 import { CreateFeedbackCommand } from './commands';
 
 @Injectable()
 export class FeedbackFacade {
-  constructor(
-    private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus,
-  ) {}
+  constructor(private readonly commandBus: CommandBus) {}
 
   commands = {
     createFeedback: (dto: CreateFeedbackDto) => this.createFeedback(dto),

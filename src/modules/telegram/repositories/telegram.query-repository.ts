@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TelegramUserEntity } from '../../../common/providers/postgres/entities/telegram-user.entity';
+import { TelegramUserEntity } from '../../../common/providers/postgres/entities';
 import { Repository } from 'typeorm';
 
 @Injectable()

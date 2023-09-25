@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
 import { envConstant } from '../../constants';
 import { config } from 'dotenv';
-import { FeedbackFormEntity } from './entities/feedback-form.entity';
-import { TelegramUserEntity } from './entities/telegram-user.entity';
+import { FeedbackFormEntity, TelegramUserEntity } from './entities';
+
 config();
 
 console.log(process.env[envConstant.dbUser]);

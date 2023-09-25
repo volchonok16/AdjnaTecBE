@@ -1,8 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreateFeedbackDto } from '../../dto';
-import { FeedbackFacade } from '../feedback.facade';
-import { FeedbackFormEntity } from '../../../../common/providers/postgres/entities/feedback-form.entity';
-import { Inject } from '@nestjs/common';
+import { FeedbackFormEntity } from '../../../../common/providers/postgres/entities';
 import { FeedbackRepository } from '../../repositories/feedback.repository';
 import { TelegramQueryRepository } from '../../../telegram/repositories/telegram.query-repository';
 import { TelegramAdapter } from '../../../../adapters/telegram';
@@ -26,20 +24,23 @@ export class CreateFeedbackCommandHandler
 
   async execute({ dto }: CreateFeedbackCommand): Promise<boolean> {
     const feedback = FeedbackFormEntity.create(dto);
-    await this.feedbackRepository.createFeedback(feedback);
+    const createdFeedback = await this.feedbackRepository.createFeedback(
+      feedback,
+    );
 
-    await this.sendTelegramNotification(dto);
-    // await this.emailManager.sendNotificationEmail(dto); // TODO
+    await this.sendTelegramNotification(createdFeedback);
+    // await this.emailManager.sendNotificationEmail(dto);
 
     return true;
   }
 
   private async sendTelegramNotification(
-    dto: CreateFeedbackDto,
+    data: FeedbackFormEntity,
   ): Promise<void> {
     const recipients = await this.telegramQueryRepository.getRecipients();
     if (recipients.length) {
-      const message = getNotificationMessageHelper(dto);
+      const message = getNotificationMessageHelper(data);
+
       for (const recipient of recipients) {
         this.telegramAdapter.sendNotification(message, recipient.id);
       }

@@ -1,10 +1,10 @@
-import { CreateFeedbackDto } from '../../modules/feedback/dto';
+import { FeedbackFormEntity } from '../providers/postgres/entities';
 
 export const getNotificationMessageHelper = (
-  data: CreateFeedbackDto,
+  data: FeedbackFormEntity,
 ): string => {
   return `
-Пользователь ${data.name} оставил обращение
+Пользователь ${data.name} оставил обращение №${data.id}
 
 Контактные данные: ${data.contacts}
 Комментарий: ${data.comment}
