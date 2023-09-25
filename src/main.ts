@@ -1,12 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-import { appInit } from './common/feature';
+import { appInit, getBaseUrl } from './common/feature';
 import { swaggerInit } from './common/swagger/swagger.init';
-import { getBaseUrl } from './common/feature';
-import { ConfigService } from '@nestjs/config';
 import { envConstant } from './common/constants';
 import { swaggerEndpoint } from './common/constants/endpoints';
+import { AppConfigService } from './config/app-config.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,9 +13,9 @@ async function bootstrap() {
   appInit(app);
   swaggerInit(app);
 
-  const configService = app.get(ConfigService);
-  const port = configService.get<number>(envConstant.appPort);
-  const baseUrl = getBaseUrl(configService);
+  const appConfigService = app.get(AppConfigService);
+  const port = appConfigService.get(envConstant.appPort);
+  const baseUrl = getBaseUrl(appConfigService);
 
   await app.listen(port, () => {
     Logger.log(

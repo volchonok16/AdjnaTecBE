@@ -10,10 +10,10 @@ export class FeedbackQueryRepository {
     private readonly feedbackRepository: Repository<FeedbackFormEntity>,
   ) {}
 
-  async getClients() {
+  async getClients(pageNumber: number) {
     return this.feedbackRepository.find({
       where: { updatedAt: null },
-      skip: 0,
+      skip: pageNumber,
       take: 5,
     });
   }

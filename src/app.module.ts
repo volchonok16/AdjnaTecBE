@@ -4,6 +4,7 @@ import { join } from 'path';
 import { ApiModule } from './modules/api.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfig } from './common/providers/postgres/typeOrmConfig';
+import { AppConfigService } from './config/app-config.service';
 
 @Module({
   imports: [
@@ -16,5 +17,6 @@ import { TypeOrmConfig } from './common/providers/postgres/typeOrmConfig';
     }),
     ApiModule,
   ],
+  providers: [AppConfigService],
 })
 export class AppModule {}

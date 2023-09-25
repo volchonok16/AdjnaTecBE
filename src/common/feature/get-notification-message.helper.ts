@@ -4,9 +4,9 @@ export const getNotificationMessageHelper = (
   data: CreateFeedbackDto,
 ): string => {
   return `
-      Пользователь ${data.name} оставил обращение
+Пользователь ${data.name} оставил обращение
 
-      Контактные данные: ${data.contacts}
-      Комментарий: ${data.comment}
+Контактные данные: ${data.contacts}
+Комментарий: ${data.comment}
     `;
 };
