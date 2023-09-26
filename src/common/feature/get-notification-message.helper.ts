@@ -6,7 +6,8 @@ export const getNotificationMessageHelper = (
   return `
 Пользователь ${data.name} оставил обращение №${data.id}
 
-Контактные данные: ${data.contacts}
+Телефон: ${data.phone}
+Почта: ${data.mail}
 Комментарий: ${data.comment}
   `;
 };

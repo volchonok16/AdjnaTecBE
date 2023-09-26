@@ -8,8 +8,8 @@ export const getBaseUrl = (configService: ConfigService): string => {
 
   if (environment === Environment.Production) {
     const baseUrl = configService.get(envConstant.appBaseUrl);
-    return `${baseUrl}:${port}`;
+    return `${baseUrl}`;
   }
 
-  return `http://localhost:${port}`;
+  return `http://localhost`;
 };

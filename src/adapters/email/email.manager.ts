@@ -11,7 +11,8 @@ export class EmailManager {
     const message = `
       <h1>Пользователь <b>${payload.name}</b> оставил обращение</h1>
       <hr width="100%" color="red">
-      <p>Контактные данные: ${payload.contacts}</p>
+      <p>Телефон: ${payload.phone}</p>
+      <p>Почта: ${payload.mail}</p>
       <p>Комментарий: ${payload.comment}</p>
     `;
     this.emailAdapters.sendEmail(subject, message);

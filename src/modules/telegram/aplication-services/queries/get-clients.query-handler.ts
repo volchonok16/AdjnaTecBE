@@ -10,6 +10,6 @@ export class GetClientsQueryHandler implements IQueryHandler<GetClientsQuery> {
   constructor(private readonly feedbackRepository: FeedbackQueryRepository) {}
 
   async execute(): Promise<any> {
-    return this.feedbackRepository.getClients();
+    //return this.feedbackRepository.getClients();
   }
 }

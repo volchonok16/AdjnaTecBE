@@ -25,7 +25,14 @@ export class FeedbackFormEntity {
     length: fieldLength.contacts,
     nullable: false,
   })
-  contacts: string;
+  mail: string;
+
+  @Column({
+    type: 'character varying',
+    length: fieldLength.contacts,
+    nullable: false,
+  })
+  phone: string;
 
   @Column({
     type: 'character varying',
@@ -36,29 +43,17 @@ export class FeedbackFormEntity {
 
   @Column({
     type: 'character varying',
-    length: fieldLength.note,
-    nullable: true,
-  })
-  note: string | null;
-
-  @Column({
-    type: 'character varying',
     nullable: true,
     default: new Date().toISOString(),
   })
   createdAt: string | null;
 
-  @Column({
-    type: 'character varying',
-    nullable: true,
-  })
-  updatedAt: string | null;
-
   static create(dto: CreateFeedbackDto): Partial<FeedbackFormEntity> {
     return {
       // userId: dto.id,
       name: dto.name,
-      contacts: dto.contacts,
+      mail: dto.mail,
+      phone: dto.phone,
       comment: dto.comment,
     };
   }

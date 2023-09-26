@@ -1,7 +1,15 @@
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsPhoneNumber,
+  IsString,
+  Matches,
+  MaxLength,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 import { fieldLength } from '../../../common/constants';
+import { IsPhone } from '../../../common/decorators';
 
 export class CreateFeedbackDto {
   // @ApiProperty({
@@ -24,13 +32,24 @@ export class CreateFeedbackDto {
   name: string;
 
   @ApiProperty({
-    description: 'Контактные данные пользователя, почта или телефон',
+    description: 'Почта пользователя',
     example: 'somemail@gmail.com',
   })
   @IsNotEmpty()
   @IsString()
+  @IsEmail()
   @MaxLength(fieldLength.contacts)
-  contacts: string;
+  mail: string;
+
+  @ApiProperty({
+    description:
+      'Пример для RU региона +79005553535, для других регионов формат написания может отличаться. Для валидации использована библиотечка: https://www.npmjs.com/package/phone',
+    example: '+79005553535',
+  })
+  @IsNotEmpty()
+  @IsPhone()
+  @IsString()
+  phone: string;
 
   @ApiProperty({
     description:

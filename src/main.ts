@@ -20,7 +20,7 @@ async function bootstrap() {
 
   await app.listen(port, () => {
     Logger.log(
-      `Swagger documentation on ${baseUrl}/${swaggerEndpoint}`,
+      `Swagger documentation on ${baseUrl}:${port}/${swaggerEndpoint}`,
       'main',
     );
   });

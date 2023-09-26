@@ -4338,6 +4338,11 @@ pgpass@1.x:
   dependencies:
     split2 "^4.1.0"
 
+phone@^3.1.40:
+  version "3.1.40"
+  resolved "https://registry.yarnpkg.com/phone/-/phone-3.1.40.tgz#039c7cd432fb2459a69f1682c5814d75c7e595c7"
+  integrity sha512-RyQgv8Xl8a43LFBLrYnlS2rTOFFg5Se6DNTG2OXHZlWqC7cHcD/KA1irHjJToeQOoCVZg63pYIlXqG4cuOj/vg==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
