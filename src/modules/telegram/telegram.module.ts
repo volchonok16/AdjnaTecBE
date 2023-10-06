@@ -19,6 +19,7 @@ import {
   FeedbackFormEntity,
   TelegramUserEntity,
 } from '../../common/providers/postgres/entities';
+import { Environment } from '../../common/enums';
 
 const sessions = new LocalSession({ database: 'session_db.json' });
 
@@ -29,7 +30,10 @@ const sessions = new LocalSession({ database: 'session_db.json' });
     TelegrafModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         middlewares: [sessions.middleware()],
-        token: configService.get(envConstant.telegramBotToken),
+        token:
+          configService.get(envConstant.nodeEnv) === Environment.Production
+            ? configService.get(envConstant.telegramBotToken)
+            : configService.get(envConstant.testTelegramBotToken),
       }),
       inject: [ConfigService],
     }),

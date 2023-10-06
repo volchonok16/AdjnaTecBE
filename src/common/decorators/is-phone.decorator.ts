@@ -8,6 +8,7 @@ import {
 import { Injectable } from '@nestjs/common';
 import { phone, PhoneResult } from 'phone';
 
+// Валидация перенесена на сторону клиента
 @ValidatorConstraint({ name: 'IsPhone', async: true })
 @Injectable()
 export class IsPhoneConstraint implements ValidatorConstraintInterface {
