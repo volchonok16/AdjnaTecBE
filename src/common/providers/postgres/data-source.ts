@@ -2,17 +2,44 @@ import { DataSource } from 'typeorm';
 import { envConstant } from '../../constants';
 import { config } from 'dotenv';
 import { FeedbackFormEntity, TelegramUserEntity } from './entities';
+import { Environment } from '../../enums';
 
 config();
 
-console.log(process.env[envConstant.dbUser]);
+const environment = process.env[envConstant.nodeEnv];
+
 export default new DataSource({
   type: 'postgres',
-  host: process.env[envConstant.dbHost],
-  port: Number(process.env[envConstant.dbPort]),
-  username: process.env[envConstant.dbUser],
-  password: process.env[envConstant.dbPassword],
-  database: process.env[envConstant.dbName],
+  host: process.env[
+    environment === Environment.Production
+      ? envConstant.dbHost
+      : envConstant.testDbHost
+  ],
+  port: Number(
+    process.env[
+      environment === Environment.Production
+        ? envConstant.dbPort
+        : envConstant.testDbPort
+    ],
+  ),
+  username:
+    process.env[
+      environment === Environment.Production
+        ? envConstant.dbUser
+        : envConstant.testDbUser
+    ],
+  password:
+    process.env[
+      environment === Environment.Production
+        ? envConstant.dbPassword
+        : envConstant.testDbPassword
+    ],
+  database:
+    process.env[
+      environment === Environment.Production
+        ? envConstant.dbName
+        : envConstant.testDbName
+    ],
   entities: [FeedbackFormEntity, TelegramUserEntity],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
   synchronize: false,

@@ -6,14 +6,7 @@ import { Context, Telegraf } from 'telegraf';
 
 @Injectable()
 export class TelegramAdapter {
-  private readonly botId: string;
-
-  constructor(
-    @InjectBot() private readonly bot: Telegraf<Context>,
-    private readonly configService: ConfigService,
-  ) {
-    this.botId = this.configService.get(envConstant.telegramBotId);
-  }
+  constructor(@InjectBot() private readonly bot: Telegraf<Context>) {}
 
   async sendNotification(message: string, recipientId: number) {
     await this.bot.telegram.sendMessage(recipientId, message);
