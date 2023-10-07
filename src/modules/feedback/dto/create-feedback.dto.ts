@@ -4,6 +4,7 @@ import {
   IsOptional,
   IsString,
   MaxLength,
+  ValidateIf,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
@@ -35,6 +36,7 @@ export class CreateFeedbackDto {
   })
   @IsOptional()
   @IsString()
+  @ValidateIf((o) => o.mail !== '')
   @IsEmail()
   @MaxLength(fieldLength.contacts)
   mail: string;
