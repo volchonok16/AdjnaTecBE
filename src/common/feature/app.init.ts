@@ -5,11 +5,7 @@ import { ExceptionsFilter } from '../exeptions/exeption.filter';
 
 export const appInit = (app: INestApplication) => {
   const options = {
-    origin: [
-      'http://localhost:3000',
-      'http://adjnatech.ru:3000',
-      'http://adjnatech.ru:3000/auth',
-    ],
+    origin: ['http://adjnatech.ru', 'http://localhost:3000'],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
     allowedHeaders: [
