@@ -23,16 +23,16 @@ export class FeedbackFormEntity {
   @Column({
     type: 'character varying',
     length: fieldLength.contacts,
-    nullable: false,
+    nullable: true,
   })
-  mail: string;
+  mail: string | null;
 
   @Column({
     type: 'character varying',
     length: fieldLength.contacts,
-    nullable: false,
+    nullable: true,
   })
-  phone: string;
+  phone: string | null;
 
   @Column({
     type: 'character varying',
