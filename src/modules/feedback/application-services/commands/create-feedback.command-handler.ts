@@ -28,7 +28,7 @@ export class CreateFeedbackCommandHandler
       feedback,
     );
 
-    await this.sendTelegramNotification(createdFeedback);
+    // await this.sendTelegramNotification(createdFeedback); TODO !!!
     // await this.emailManager.sendNotificationEmail(dto);
 
     return true;
