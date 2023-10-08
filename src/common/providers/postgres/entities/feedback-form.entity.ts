@@ -44,7 +44,6 @@ export class FeedbackFormEntity {
   @Column({
     type: 'character varying',
     nullable: true,
-    default: new Date().toISOString(),
   })
   createdAt: string | null;
 
@@ -55,6 +54,7 @@ export class FeedbackFormEntity {
       mail: dto.mail,
       phone: dto.phone,
       comment: dto.comment,
+      createdAt: new Date().toISOString(),
     };
   }
 }
