@@ -1,4 +1,5 @@
-export * from './feedbackEndpoints.constant';
-export * from './telegramEndpoints.constant';
+export * from './feedback-endpoints.constant';
+export * from './telegram-endpoints.constant';
+export * from './document-endpoint.constant';
 
 export const swaggerEndpoint = 'swagger';
