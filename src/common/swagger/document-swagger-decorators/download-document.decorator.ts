@@ -7,16 +7,13 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { documentEndpoint } from '../../constants/endpoints';
-import { DocumentView } from '../../../modules/documents/view';
 
-export function ApiGetDocument() {
+export function ApiDownloadDocument() {
   return applyDecorators(
     ApiTags(documentEndpoint.default),
-    ApiOperation({ summary: 'Запросить документ' }),
-    //ApiQuery({ type: GetDocumentsQueryDto }), // почему-то дублирует
+    ApiOperation({ summary: 'Скачать документ' }),
     ApiOkResponse({
-      description: 'Возвращает PDF файл в формате base64.',
-      type: DocumentView,
+      description: 'Позволяет скачать файл',
     }),
     ApiBadRequestResponse({ description: 'Неверно передан квери запрос' }),
     ApiNotFoundResponse({ description: 'Файл нужного типа не найден' }),

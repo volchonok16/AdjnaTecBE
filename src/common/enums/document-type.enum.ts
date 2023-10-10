@@ -3,5 +3,4 @@ export enum DocumentType {
   StaffCard = 'staff_card',
   Benefit = 'benefit',
   Instructions = 'instructions',
-  All = 'all',
 }

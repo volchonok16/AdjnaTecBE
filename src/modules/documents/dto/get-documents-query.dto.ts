@@ -1,4 +1,4 @@
-import { DocumentType } from '../../../common/enums/document-type.enum';
+import { DocumentType } from '../../../common/enums';
 import { IsEnum } from 'class-validator';
 
 export class GetDocumentsQueryDto {
