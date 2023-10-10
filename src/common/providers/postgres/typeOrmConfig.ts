@@ -6,6 +6,7 @@ import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { FeedbackFormEntity } from './entities/feedback-form.entity';
 import { TelegramUserEntity } from './entities/telegram-user.entity';
 import { Environment } from '../../enums';
+import { DocumentEntity } from './entities/document.entity';
 
 @Injectable()
 export class TypeOrmConfig implements TypeOrmOptionsFactory {
@@ -42,7 +43,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
           ? envConstant.dbName
           : envConstant.testDbName,
       ),
-      entities: [FeedbackFormEntity, TelegramUserEntity],
+      entities: [FeedbackFormEntity, TelegramUserEntity, DocumentEntity],
       synchronize: false,
     };
   }

@@ -8,11 +8,6 @@ import { FeedbackFacade } from './application-services';
 export class FeedbackController {
   constructor(private readonly feedbackFacade: FeedbackFacade) {}
 
-  @Get()
-  async appWork() {
-    return `Приложение запущено.`;
-  }
-
   @Post()
   @ApiCreateFeedbackForm()
   async createFeedback(@Body() dto: CreateFeedbackDto): Promise<boolean> {

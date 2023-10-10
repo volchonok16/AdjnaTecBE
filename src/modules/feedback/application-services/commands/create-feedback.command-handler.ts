@@ -16,7 +16,7 @@ export class CreateFeedbackCommandHandler
   implements ICommandHandler<CreateFeedbackCommand, boolean>
 {
   constructor(
-    private feedbackRepository: FeedbackRepository,
+    private readonly feedbackRepository: FeedbackRepository,
     private readonly telegramQueryRepository: TelegramQueryRepository,
     private readonly telegramAdapter: TelegramAdapter,
     private readonly emailManager: EmailManager,

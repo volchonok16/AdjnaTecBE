@@ -6,7 +6,7 @@ import { CreateFeedbackDto } from '../../../modules/feedback/dto';
 export function ApiCreateFeedbackForm() {
   return applyDecorators(
     ApiTags(feedbackEndpoints.default),
-    ApiOperation({ summary: 'Create new feedback', description: '' }),
+    ApiOperation({ summary: 'Создать новое обращение' }),
     ApiBody({ type: CreateFeedbackDto }),
   );
 }

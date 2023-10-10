@@ -3,6 +3,7 @@ import { envConstant } from '../../constants';
 import { config } from 'dotenv';
 import { FeedbackFormEntity, TelegramUserEntity } from './entities';
 import { Environment } from '../../enums';
+import { DocumentEntity } from './entities/document.entity';
 
 config();
 
@@ -40,7 +41,7 @@ export default new DataSource({
         ? envConstant.dbName
         : envConstant.testDbName
     ],
-  entities: [FeedbackFormEntity, TelegramUserEntity],
+  entities: [FeedbackFormEntity, TelegramUserEntity, DocumentEntity],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
   synchronize: false,
 });
