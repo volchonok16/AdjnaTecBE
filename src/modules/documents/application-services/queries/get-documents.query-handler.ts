@@ -18,12 +18,20 @@ export class GetDocumentsQueryHandler
   ) {}
 
   async execute({ dto }: GetDocumentsQuery): Promise<DocumentView> {
-    const document = await this.documentQueryRepository.getDocument(
-      dto.document,
-    );
-    if (!document) throw new NotFoundException();
-    const documentData = fs.readFileSync(document.url);
-    const base64Data = documentData.toString('base64');
-    return { document: base64Data };
+    let iter = 0;
+    try {
+      const document = await this.documentQueryRepository.getDocument(
+        dto.document,
+      );
+      if (!document) throw new NotFoundException();
+      iter++;
+      const documentData = fs.readFileSync(document.url);
+      iter++;
+      const base64Data = documentData.toString('base64');
+      iter++;
+      return { document: base64Data };
+    } catch (e) {
+      return { document: `${iter}m, Error: ${e}` };
+    }
   }
 }

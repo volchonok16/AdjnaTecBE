@@ -9,7 +9,7 @@ import {
 import { DocumentView } from './view';
 import { Response } from 'express';
 import { UpdateDocumentPathDto } from './dto/update-document-path.dto';
-import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller(documentEndpoint.default)
 export class DocumentController {
