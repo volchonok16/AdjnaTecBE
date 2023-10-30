@@ -4,6 +4,7 @@ export const envConstant = {
   appPort: 'APP_PORT',
   telegramBotToken: 'TELEGRAM_BOT_TOKEN',
   telegramBotId: 'TELEGRAM_BOT_ID',
+  discordBotToken: 'DISCORD_BOT_TOKEN',
   mailboxHost: 'MAILBOX_HOST',
   mailboxPort: 'MAILBOX_PORT',
   mailbox: 'MAILBOX',
